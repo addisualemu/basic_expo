@@ -28,6 +28,7 @@ export function setupNativeWind(config: GeneratorConfig) {
 module.exports = {
   content: [
     "./App.{js,jsx,ts,tsx}",
+    "./index.{js,jsx,ts,tsx}",
     "./app/**/*.{js,jsx,ts,tsx}",
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -53,8 +54,11 @@ module.exports = {
     `module.exports = function (api) {
   api.cache(true);
   return {
-    presets: ["babel-preset-expo"],
-    plugins: ["nativewind/babel"],
+    presets: [
+      "babel-preset-expo",
+      "nativewind/babel",
+    ],
+    plugins: [],
   };
 };
 `,

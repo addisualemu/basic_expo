@@ -23,5 +23,9 @@ export function createExpoProject(config: GeneratorConfig) {
 
   console.log("\nCreating Expo project (blank TypeScript)...");
   run(`npx create-expo-app@latest ${config.projectName} --template blank-typescript`);
+
+  const projectRoot = path.resolve(process.cwd(), config.projectName);
+  console.log("\nEnsuring Expo web dependencies are installed (react-dom, react-native-web)...");
+  run("npx expo install react-dom react-native-web", { cwd: projectRoot });
 }
 

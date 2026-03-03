@@ -1,0 +1,1 @@
+node ../basic_expo/generator/dist/index.js 
