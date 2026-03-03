@@ -165,6 +165,17 @@ The generator is designed to be **modular and easy to extend**.
 
 ```text
 generator/
+  .cursor/
+    skills/             # Cursor AI skills for generated apps (see §10)
+      expo-app-conventions/
+      expo-feature-builder/
+      expo-ui-agent/
+      expo-state-agent/
+      expo-api-agent/
+      expo-auth-flow/
+      expo-navigation/
+      expo-testing/
+      expo-architecture-enforcer/
   package.json          # Node package (CLI entry: create-expo-app-plus)
   tsconfig.json         # TypeScript config
   src/
@@ -207,11 +218,15 @@ Each step lives in `src/steps/` and takes `GeneratorConfig` as input.
   - Installs required dependencies via `npx expo install` and `npm install`.
   - Writes Tailwind/NativeWind related config files into the project directory.
 
+- `copyCursorSkills.ts`
+  - Copies `generator/.cursor/skills/` into `<projectName>/.cursor/skills/` so the new app has the Expo skills when opened in Cursor.
+
 The main CLI (`src/index.ts`) calls:
 
 1. `runPrompts()` → get `config`
 2. `createExpoProject(config)`
 3. `setupNativeWind(config)`
+4. `copyCursorSkills(config)` → copies `.cursor/skills/` into the new project
 
 ---
 
@@ -344,4 +359,51 @@ npx expo start
 ```
 
 You can now iteratively add new steps/modules to `src/steps` and wire them into `src/index.ts` to keep growing this generator over time.
+
+---
+
+## 10. Cursor skills (AI agents for generated apps)
+
+The generator includes **Cursor skills** so that when you work on a **generated app** in Cursor, the AI can build features in a repeatable, opinionated way (Expo Router, Zustand, NativeWind, consistent folder structure).
+
+### Where the skills live
+
+- **In this repo**: `generator/.cursor/skills/`. Each skill is a folder with `SKILL.md` and optional `reference.md`.
+- **In generated apps**: The generator **copies** `.cursor/skills/` into each new project (step after NativeWind). When you open the generated app in Cursor, the skills are already there. You can also copy them into `~/.cursor/skills/` for use in every project.
+
+### Skills overview
+
+| Skill | Purpose |
+|-------|--------|
+| **expo-app-conventions** | Single source of truth: folder structure (`app/`, `components/`, `lib/`, etc.), stack (Expo Router, Zustand, NativeWind), naming. Other skills follow this. |
+| **expo-feature-builder** | Orchestrator. User says “add settings with dark mode” or “add auth”; it delegates to UI, state, API, auth, navigation, testing as needed. |
+| **expo-ui-agent** | Screens and components with NativeWind only. `components/ui/`, `components/features/`, `components/layout/`, `constants/theme`. |
+| **expo-state-agent** | Zustand stores in `lib/stores/`, persistence, hooks. No Redux. |
+| **expo-api-agent** | API client in `lib/api/`, endpoints, types, data-fetching hooks. |
+| **expo-auth-flow** | Login/signup screens, auth store, token persistence, protected routes with Expo Router. |
+| **expo-navigation** | Expo Router: new routes, tabs, `_layout.tsx`. No React Navigation. |
+| **expo-testing** | Unit/integration tests (Jest + React Native Testing Library) for components, hooks, stores. |
+| **expo-architecture-enforcer** | Refactor an existing app to match the canonical folder structure and stack. |
+
+### How agents call other agents
+
+- **expo-feature-builder** is the entry point for “add a feature”. It uses the delegation map in its SKILL.md to decide when to apply **expo-ui-agent**, **expo-state-agent**, **expo-api-agent**, **expo-auth-flow**, **expo-navigation**, and **expo-testing**.
+- In Cursor, you can invoke the orchestrator by asking e.g. “Add a settings screen with dark mode that persists” or “Add login/signup flow”; the agent should apply **expo-feature-builder**, which in turn applies the sub-skills in order (state → API → auth → UI → navigation → testing).
+
+### Canonical folder structure (summary)
+
+Generated apps are expected to follow this layout (details in `expo-app-conventions/reference.md`):
+
+```text
+app/                 # Expo Router only
+components/ui/       # Primitives (Button, Text, Input)
+components/features/ # Feature components (LoginForm, SettingsForm)
+components/layout/   # Screen shells (Screen, Container)
+hooks/
+lib/stores/         # Zustand
+lib/api/            # API client, endpoints
+lib/utils/
+constants/           # theme.ts, config
+assets/
+```
 

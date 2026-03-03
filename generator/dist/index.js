@@ -2,6 +2,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const prompts_1 = require("./prompts");
+const copyCursorSkills_1 = require("./steps/copyCursorSkills");
 const createProject_1 = require("./steps/createProject");
 const nativewind_1 = require("./steps/nativewind");
 async function main() {
@@ -11,6 +12,8 @@ async function main() {
     (0, createProject_1.createExpoProject)(config);
     // 2. Setup NativeWind / Tailwind
     (0, nativewind_1.setupNativeWind)(config);
+    // 3. Copy Cursor skills into project
+    (0, copyCursorSkills_1.copyCursorSkills)(config);
     console.log("\nDone! Next steps:");
     console.log(`  cd ${config.projectName}`);
     console.log("  npx expo start");

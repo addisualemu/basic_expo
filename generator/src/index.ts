@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import type { GeneratorConfig } from "./config";
 import { runPrompts } from "./prompts";
+import { copyCursorSkills } from "./steps/copyCursorSkills";
 import { createExpoProject } from "./steps/createProject";
 import { setupNativeWind } from "./steps/nativewind";
 
@@ -14,6 +15,9 @@ async function main() {
 
   // 2. Setup NativeWind / Tailwind
   setupNativeWind(config);
+
+  // 3. Copy Cursor skills into project
+  copyCursorSkills(config);
 
   console.log("\nDone! Next steps:");
   console.log(`  cd ${config.projectName}`);
