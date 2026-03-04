@@ -66,6 +66,13 @@ You get a working screen, persisted theme, and structure that matches the conven
 | Skill | Purpose |
 |-------|--------|
 | **expo-app-conventions** | Single source of truth for folder structure, stack, and naming. Use when establishing or checking layout, adding files, or when any Expo skill needs structure rules. See `expo-app-conventions/reference.md` for the full tree. |
+| **project-brief** | Resource: read PROJECT_BRIEF.md for this project's goals, phases, and task priorities. Use when planning or implementing so work aligns with the brief. If missing, suggest running **expo-launch** first. |
+
+### Discovery and planning
+
+| Skill | Purpose |
+|-------|--------|
+| **expo-launch** | Discovery conversation in chat: ask what the user is building, follow up with questions (no fixed list), then generate and write `.cursor/skills/project-brief/PROJECT_BRIEF.md` with phases and importance. Trigger: "launch", "lets get started", "what are we building". |
 
 ### Feature building
 
@@ -103,6 +110,15 @@ You get a working screen, persisted theme, and structure that matches the conven
 - **“Add routes / tabs / layout groups”** → **expo-navigation**
 - **“Add tests / coverage”** → **expo-testing**
 - **“Refactor to conventions / fix layout / migrate structure”** → **expo-architecture-enforcer**
+- **“What to do next?” / “What’s left?” / “What should I work on?” / “Priorities?”** → **project-brief** (lists remaining tasks by phase/importance and suggests the next one)
+
+---
+
+## Discovery (expo-launch and project-brief)
+
+To define what you're building before coding, say **"Launch"** or **"Lets get started"** in chat. The **expo-launch** skill runs a discovery conversation (the AI asks what you're building and follow-up questions), then writes a project brief to `.cursor/skills/project-brief/PROJECT_BRIEF.md` with phases and importance. The **project-brief** skill tells the AI to read that file when planning or implementing so work aligns with your priorities.
+
+**Task tracking:** Tasks in the brief use Markdown checkboxes (`- [ ]` = todo, `- [x]` = done). When you ask **"what to do next"**, the AI lists only unchecked tasks, grouped by phase and importance, and suggests the next one. When **expo-feature-builder** completes a feature that matches a brief task, it marks that task done in the file so the list stays accurate.
 
 ---
 

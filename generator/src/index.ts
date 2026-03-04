@@ -4,6 +4,7 @@ import { runPrompts } from "./prompts";
 import { copyCursorSkills } from "./steps/copyCursorSkills";
 import { createExpoProject } from "./steps/createProject";
 import { setupNativeWind } from "./steps/nativewind";
+import { writeInitialBrief } from "./steps/writeInitialBrief";
 
 async function main() {
   console.log("Expo App Generator (TypeScript + NativeWind)");
@@ -18,6 +19,9 @@ async function main() {
 
   // 3. Copy Cursor skills into project
   copyCursorSkills(config);
+
+  // 4. Seed initial project brief for this app
+  writeInitialBrief(config);
 
   console.log("\nDone! Next steps:");
   console.log(`  cd ${config.projectName}`);

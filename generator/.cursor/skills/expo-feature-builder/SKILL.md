@@ -18,6 +18,7 @@ Breaks feature requests into tasks and applies the right **sub-skills** so the a
 2. **Plan** which parts are needed (UI, state, API, auth, navigation).
 3. **Apply** the corresponding skills in dependency order (e.g. state/store before screens that use it).
 4. **Wire** everything: routes, layout, providers if needed.
+5. **If** the feature you just built matches a task in the project brief (`.cursor/skills/project-brief/PROJECT_BRIEF.md`), **update** that file: change the task's checkbox from `- [ ]` to `- [x]` so "what to do next" stays accurate.
 
 ## Delegation map
 

@@ -176,6 +176,8 @@ generator/
       expo-navigation/
       expo-testing/
       expo-architecture-enforcer/
+      expo-launch/
+      project-brief/
   package.json          # Node package (CLI entry: create-expo-app-plus)
   tsconfig.json         # TypeScript config
   src/
@@ -384,6 +386,8 @@ The generator includes **Cursor skills** so that when you work on a **generated 
 | **expo-navigation** | Expo Router: new routes, tabs, `_layout.tsx`. No React Navigation. |
 | **expo-testing** | Unit/integration tests (Jest + React Native Testing Library) for components, hooks, stores. |
 | **expo-architecture-enforcer** | Refactor an existing app to match the canonical folder structure and stack. |
+| **expo-launch** | Discovery conversation in chat: ask what the user is building, follow up with questions, then write `.cursor/skills/project-brief/PROJECT_BRIEF.md` with phases and importance. Trigger: "launch", "lets get started", "what are we building". |
+| **project-brief** | Resource: read PROJECT_BRIEF.md for this project's goals, phases, and priorities. If missing, suggest running expo-launch first. |
 
 ### How agents call other agents
 
