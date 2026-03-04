@@ -28,5 +28,15 @@ function createExpoProject(config) {
     const projectRoot = node_path_1.default.resolve(process.cwd(), config.projectName);
     console.log("\nEnsuring Expo web dependencies are installed (react-dom, react-native-web)...");
     run("npx expo install react-dom react-native-web", { cwd: projectRoot });
+    addEasScripts(projectRoot);
+}
+function addEasScripts(projectRoot) {
+    const pkgPath = node_path_1.default.join(projectRoot, "package.json");
+    const pkg = JSON.parse(node_fs_1.default.readFileSync(pkgPath, "utf-8"));
+    if (!pkg.scripts)
+        pkg.scripts = {};
+    pkg.scripts.build = "eas build --local -p ios --profile preview";
+    pkg.scripts.deploy = "eas build --profile preview --platform ios";
+    node_fs_1.default.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n");
 }
 //# sourceMappingURL=createProject.js.map

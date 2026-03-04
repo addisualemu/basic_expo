@@ -2,6 +2,8 @@
 
 Overview of the **Agent Skills** in `.cursor/skills/`. These skills give the AI consistent rules for building and maintaining Expo apps that use **Expo Router**, **Zustand**, and **NativeWind**.
 
+**Which agents are in the generated app?** See [AGENTS_FOR_GENERATED_APP.md](AGENTS_FOR_GENERATED_APP.md) for the full list of included agents and suggested custom agents to add.
+
 ---
 
 ## How to use
@@ -87,6 +89,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 | **expo-ui-agent** | Screens and components with **NativeWind only** (no `StyleSheet`). Primitives in `components/ui/`, feature UI in `components/features/`, layout in `components/layout/`, design tokens in `constants/theme.ts`. |
 | **expo-state-agent** | Zustand stores in `lib/stores/`, persistence (e.g. AsyncStorage), and hooks in `hooks/`. No Redux; no API calls inside stores. |
 | **expo-api-agent** | API client in `lib/api/client.ts`, endpoints in `lib/api/endpoints/`, types, and data-fetching hooks. Env-based base URL; no UI in this layer. |
+| **expo-env-agent** | Env and config: `.env`, `.env.example`, `lib/env.ts`, `EXPO_PUBLIC_*`. Use when adding or changing env vars, API URL, or feature flags. |
 | **expo-auth-flow** | End-to-end auth: auth store, login/signup screens, token persistence, protected routes. Uses state, API, UI, and navigation patterns; coordinates with expo-navigation for route guards. |
 | **expo-navigation** | Expo Router only: routes in `app/`, groups like `(tabs)` and `(auth)`, `_layout.tsx`. No direct React Navigation stack/tabs usage. |
 
@@ -106,6 +109,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 - **“Add or change UI / screens / components / styling”** → **expo-ui-agent**
 - **“Add or change state / stores / persistence”** → **expo-state-agent**
 - **“Add or change API / endpoints / data fetching”** → **expo-api-agent**
+- **“Add env vars / API URL / feature flags / .env.example”** → **expo-env-agent**
 - **“Add login, signup, protected routes”** → **expo-auth-flow**
 - **“Add routes / tabs / layout groups”** → **expo-navigation**
 - **“Add tests / coverage”** → **expo-testing**

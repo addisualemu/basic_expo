@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import type { GeneratorConfig } from "./config";
 import { runPrompts } from "./prompts";
+import { copyCursorAgents } from "./steps/copyCursorAgents";
 import { copyCursorSkills } from "./steps/copyCursorSkills";
 import { createExpoProject } from "./steps/createProject";
 import { setupNativeWind } from "./steps/nativewind";
@@ -20,7 +21,10 @@ async function main() {
   // 3. Copy Cursor skills into project
   copyCursorSkills(config);
 
-  // 4. Seed initial project brief for this app
+  // 4. Copy Cursor subagents into project
+  copyCursorAgents(config);
+
+  // 5. Seed initial project brief for this app
   writeInitialBrief(config);
 
   console.log("\nDone! Next steps:");

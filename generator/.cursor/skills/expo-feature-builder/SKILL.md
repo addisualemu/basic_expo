@@ -25,6 +25,7 @@ Breaks feature requests into tasks and applies the right **sub-skills** so the a
 | Need | Skill to use | What it does |
 |------|--------------|--------------|
 | Where to put files, structure | expo-app-conventions | Folder layout, naming, stack |
+| Env vars, API URL, feature flags | expo-env-agent | `.env`, `.env.example`, `lib/env.ts` |
 | Screens, components, styling | expo-ui-agent | NativeWind components and screens in `components/`, `app/` |
 | Global or feature state | expo-state-agent | Zustand stores in `lib/stores/`, hooks |
 | REST/API calls, typed client | expo-api-agent | `lib/api/` client, endpoints, hooks |
