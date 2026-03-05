@@ -35,6 +35,21 @@ lib/
 constants/            ← theme.ts (design tokens), config.ts
 ```
 
+## Delegation map
+
+| Need | Skill to use | What it does |
+|------|--------------|--------------|
+| Where to put files, structure | expo-app-conventions | Folder layout, naming, stack |
+| Env vars, API URL, feature flags | expo-env-agent | `.env`, `.env.example`, `lib/env.ts` |
+| Screens, components, styling | expo-ui-agent | NativeWind components and screens in `components/`, `app/` |
+| Global or feature state | expo-state-agent | Zustand stores in `lib/stores/`, hooks |
+| REST/API calls, typed client | expo-api-agent | `lib/api/` client, endpoints, hooks |
+| Login/signup, protected routes | expo-auth-flow | Auth screens, auth store, persistence, redirects |
+| New routes, tabs, layouts | expo-navigation | Expo Router routes and `_layout.tsx` |
+| Forms and validation | expo-forms-agent | Form state, Zod validation, reusable inputs |
+| Error/loading states | expo-error-handling | Error boundaries, loading skeletons, retry |
+| Tests for the feature | expo-testing | Unit/e2e for new code |
+
 ## Order of operations
 
 For every feature, work in this order:
@@ -47,6 +62,20 @@ For every feature, work in this order:
 6. **UI** — add screens in `app/` (thin: layout + component composition) and components in `components/features/` or `components/ui/`. Use NativeWind `className` only — no `StyleSheet`.
 7. **Navigation** — wire routes in `app/`, add `_layout.tsx` changes, add tabs if needed.
 8. **Brief** — after completing, check `.cursor/skills/project-brief/PROJECT_BRIEF.md` and mark the matching task from `- [ ]` to `- [x]`.
+
+## Checklist pattern
+
+For each feature, mentally or explicitly:
+
+```
+- [ ] expo-app-conventions: Confirm target paths (app/, components/, lib/)
+- [ ] expo-state-agent: Add/update stores and hooks if feature has state
+- [ ] expo-api-agent: Add client/endpoints/hooks if feature uses API
+- [ ] expo-auth-flow: Add auth flow or protected route if needed
+- [ ] expo-ui-agent: Add screens and components (NativeWind)
+- [ ] expo-navigation: Add routes, tabs, or layout changes
+- [ ] expo-testing: Add tests if user asked for them
+```
 
 ## Rules
 

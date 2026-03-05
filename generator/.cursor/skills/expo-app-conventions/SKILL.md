@@ -32,6 +32,7 @@ This skill defines the **single source of truth** for generated Expo apps. All o
 - `hooks/` — Custom hooks.
 - `lib/stores/` — Zustand stores.
 - `lib/api/` — API client and endpoints.
+- `lib/validation/` — Zod schemas for form validation.
 - `lib/utils/` — Pure helpers.
 - `constants/` — theme.ts, config. Design tokens.
 - `assets/` — Fonts, images.

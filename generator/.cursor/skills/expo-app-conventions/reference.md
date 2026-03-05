@@ -30,6 +30,7 @@ Use this layout in every generated app. All other Expo skills assume this struct
 | `hooks/` | React hooks (useAuth, useTheme). May wrap store selectors. |
 | `lib/stores/` | Zustand stores only. One file per store or domain. |
 | `lib/api/` | API client, endpoint functions, request/response types. |
+| `lib/validation/` | Zod schemas for form validation (auth.ts, profile.ts). |
 | `lib/utils/` | Pure helpers (formatDate, cn). |
 | `constants/` | theme.ts (colors, spacing), config.ts. Design tokens for NativeWind. |
 

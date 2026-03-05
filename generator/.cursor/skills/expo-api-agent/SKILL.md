@@ -25,16 +25,16 @@ Creates and edits the **API layer** in `lib/api/`. Typed client, endpoints, and 
 
 ## Client pattern
 
-- Base URL from `process.env.EXPO_PUBLIC_API_URL` or similar (Expo env vars).
+- Base URL from `lib/env.ts` (see **expo-env-agent**). Never read `process.env` directly in the client.
 - Single client (e.g. fetch wrapper or axios instance) with interceptors for auth if needed.
 - Typed request/response; handle errors consistently (e.g. throw or return Result).
 
 ```ts
 // lib/api/client.ts
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL ?? "";
+import { env } from "@/lib/env";
 
 export async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const res = await fetch(`${env.API_URL}${path}`, {
     ...options,
     headers: { "Content-Type": "application/json", ...options?.headers },
   });
@@ -56,6 +56,6 @@ export async function request<T>(path: string, options?: RequestInit): Promise<T
 ## Rules
 
 1. No UI in this layer; only client, endpoints, types, and data hooks.
-2. Use env for base URL; document required vars (e.g. in README or .env.example).
+2. Use `env.API_URL` from `lib/env.ts` for base URL (see **expo-env-agent**); never read `process.env` directly in API code.
 3. Prefer typed responses; define types next to endpoints or in lib/api/types.ts.
 4. If the app uses auth, client should attach token (from store or param); coordinate with **expo-auth-flow** / **expo-state-agent** for token source.

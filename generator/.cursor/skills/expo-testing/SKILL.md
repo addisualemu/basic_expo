@@ -5,7 +5,7 @@ description: Adds unit and integration tests for Expo app components, hooks, and
 
 # Expo testing
 
-Adds **tests** for the generated app: components, hooks, stores. Prefer Jest + React Native Testing Library. E2E with Detox or Maestro only if the user explicitly asks for e2e.
+Adds **tests** for the generated app. For detailed test patterns, mock examples, and output format, defer to the **expo-test-runner** agent (`.cursor/agents/expo-test-runner.md`). This skill covers setup, placement, and guidelines.
 
 ## When to use
 
@@ -34,5 +34,6 @@ Adds **tests** for the generated app: components, hooks, stores. Prefer Jest + R
 ## Rules
 
 1. Prefer Testing Library (user-centric queries); avoid testing implementation details.
-2. Keep tests in the project (not in generator); follow project’s existing test layout if any.
+2. Keep tests in the project (not in generator); follow project's existing test layout if any.
 3. Do not add e2e stack unless the user asks for it; focus on unit/integration first.
+4. For code patterns (component test, store test, hook test, mocks for AsyncStorage and Expo Router), see the **expo-test-runner** agent.

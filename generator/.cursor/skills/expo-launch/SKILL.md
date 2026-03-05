@@ -89,5 +89,5 @@ Fill phases 2–3 (and optionally more) from what the user said; keep Phase 1 an
 
 ## After writing
 
-- Confirm to the user that the brief was saved and where (` .cursor/skills/project-brief/PROJECT_BRIEF.md`).
+- Confirm to the user that the brief was saved and where (`.cursor/skills/project-brief/PROJECT_BRIEF.md`).
 - Tell them they can ask to implement features next; you (and expo-feature-builder) will use the brief for phases and priorities.
