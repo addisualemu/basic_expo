@@ -372,6 +372,7 @@ The generator includes **Cursor skills** so that when you work on a **generated 
 
 - **In this repo**: `generator/.cursor/skills/`. Each skill is a folder with `SKILL.md` and optional `reference.md`.
 - **In generated apps**: The generator **copies** `.cursor/skills/` into each new project (step after NativeWind). When you open the generated app in Cursor, the skills are already there. You can also copy them into `~/.cursor/skills/` for use in every project.
+- **Optional Jira**: To have planning create Jira tickets and "what to work on?" read from Jira, configure a Jira MCP server in Cursor and see `generator/.cursor/JIRA_INTEGRATION.md` and `generator/.cursor/mcp.jira.example.json`.
 
 ### Skills overview
 
@@ -388,6 +389,7 @@ The generator includes **Cursor skills** so that when you work on a **generated 
 | **expo-architecture-enforcer** | Refactor an existing app to match the canonical folder structure and stack. |
 | **expo-launch** | Discovery conversation in chat: ask what the user is building, follow up with questions, then write `.cursor/skills/project-brief/PROJECT_BRIEF.md` with phases and importance. Trigger: "launch", "lets get started", "what are we building". |
 | **project-brief** | Resource: read PROJECT_BRIEF.md for this project's goals, phases, and priorities. If missing, suggest running expo-launch first. |
+| **expo-jira-integration** | Optional: when a Jira MCP server is configured, create Jira issues after writing the brief and answer "what to work on?" from Jira. See `generator/.cursor/JIRA_INTEGRATION.md` for setup. |
 
 ### How agents call other agents
 

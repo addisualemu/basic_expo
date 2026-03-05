@@ -101,6 +101,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 | Skill | Purpose |
 |-------|---------|
 | **expo-launch** | Simpler discovery: scripted Q&A (one free-text question, then multiple-choice), then write PROJECT_BRIEF.md. Use when you prefer a fixed question flow without research. For research-informed, few-questions-at-a-time discovery, use the **expo-planning-facilitator** agent instead. |
+| **expo-jira-integration** | Optional: when Jira MCP is configured, create Jira issues after writing the brief (Epic per phase, Story/Task per task) and answer "what to work on?" from Jira. Use when Jira MCP tools are available; otherwise fall back to PROJECT_BRIEF.md only. See [JIRA_INTEGRATION.md](../JIRA_INTEGRATION.md) for setup. |
 
 ### Domain skills (use directly or via feature-builder agent)
 
@@ -140,7 +141,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 - **"Add error handling / loading states / empty states"** → **expo-error-handling**
 - **"Add tests / coverage"** → **expo-testing** skill or **expo-test-runner** agent
 - **"Refactor to conventions / fix layout / migrate structure"** → **expo-architecture-enforcer**
-- **"What to do next?" / "What's left?" / "Priorities?"** → **project-brief**
+- **"What to do next?" / "What's left?" / "Priorities?"** → **project-brief** (or from Jira if **expo-jira-integration** and Jira MCP are configured)
 - **"Debug this error" / "App is crashing"** → **expo-debugger** agent
 - **"Check if this follows conventions"** → **expo-verifier** agent
 
@@ -156,6 +157,8 @@ To define what you're building before coding, say **"Launch"** or **"Lets get st
 The **project-brief** skill tells the AI to read PROJECT_BRIEF.md when planning or implementing so work aligns with your priorities.
 
 **Task tracking:** Tasks in the brief use Markdown checkboxes (`- [ ]` = todo, `- [x]` = done). When you ask **"what to do next"**, the AI lists only unchecked tasks, grouped by phase and importance, and suggests the next one. When the **expo-feature-builder** agent completes a feature that matches a brief task, it marks that task done in the file so the list stays accurate.
+
+**Optional Jira:** If you configure a Jira MCP server (see [JIRA_INTEGRATION.md](../JIRA_INTEGRATION.md) in `.cursor/`), the AI can create Jira tickets when the brief is written and suggest the next task from Jira when you ask "what should I work on?". The **expo-jira-integration** skill describes when and how to use Jira MCP tools.
 
 ---
 
@@ -219,4 +222,4 @@ These fit the stack and common app needs. Add them under `.cursor/skills/` when 
 ## Summary
 
 - **6 agents**: expo-planning-facilitator, expo-researcher, expo-feature-builder, expo-test-runner, expo-debugger, expo-verifier.
-- **13 skills**: expo-app-conventions, project-brief, expo-launch, expo-ui-agent, expo-state-agent, expo-api-agent, expo-env-agent, expo-auth-flow, expo-navigation, expo-forms-agent, expo-error-handling, expo-testing, expo-architecture-enforcer.
+- **14 skills**: expo-app-conventions, project-brief, expo-launch, expo-jira-integration, expo-ui-agent, expo-state-agent, expo-api-agent, expo-env-agent, expo-auth-flow, expo-navigation, expo-forms-agent, expo-error-handling, expo-testing, expo-architecture-enforcer.

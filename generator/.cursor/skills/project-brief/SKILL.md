@@ -22,10 +22,12 @@ This skill points to a **resource file** that defines what the project is and wh
 
 When the user asks **what to do next**, **what's left**, **what should I work on**, or **priorities**:
 
-1. **Read** PROJECT_BRIEF.md and parse **only unchecked** tasks (`- [ ]`). Ignore tasks already marked done (`- [x]`).
-2. **List** remaining tasks grouped by phase, with importance in the heading (e.g. "Phase 1: Foundation (High)").
-3. **Suggest** the next task to do: first by **phase order** (Phase 1 before Phase 2), then by **importance** (High before Medium before Low). Give one clear recommendation, e.g. "Next: Phase 1 — Set up Expo Router and base layout (High)."
-4. If all tasks are done, say so and suggest running **expo-launch** again if they want to add more scope, or that the brief is complete.
+1. **If Jira MCP tools are available** (e.g. search/list issues, JQL): Follow **expo-jira-integration** skill — query Jira (e.g. assignee = currentUser() AND status != Done, or sprint in openSprints()), list open issues, suggest the next one, and optionally mention PROJECT_BRIEF.md progress for context.
+2. **If Jira MCP is not available**, use the brief only:
+   - **Read** PROJECT_BRIEF.md and parse **only unchecked** tasks (`- [ ]`). Ignore tasks already marked done (`- [x]`).
+   - **List** remaining tasks grouped by phase, with importance in the heading (e.g. "Phase 1: Foundation (High)").
+   - **Suggest** the next task to do: first by **phase order** (Phase 1 before Phase 2), then by **importance** (High before Medium before Low). Give one clear recommendation, e.g. "Next: Phase 1 — Set up Expo Router and base layout (High)."
+   - If all tasks are done, say so and suggest running **expo-launch** again if they want to add more scope, or that the brief is complete.
 
 ## How to use it when implementing
 
