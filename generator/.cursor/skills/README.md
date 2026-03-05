@@ -78,6 +78,8 @@ You get a working screen, persisted theme, and structure that matches the conven
 
 | Agent | Purpose |
 |-------|---------|
+| **expo-planning-facilitator** | Discovery: asks 2–3 questions at a time, uses **expo-researcher** when needed, then writes PROJECT_BRIEF.md. Use for "launch", "lets get started", "what are we building". |
+| **expo-researcher** | Researches app domains and patterns (web/docs). Used by the planning facilitator to suggest features, flows, and next questions; can be run standalone for "research booking app features". |
 | **expo-feature-builder** | Orchestrates features by delegating to skills (state → API → auth → UI → navigation → testing). Use for "add a feature", "build X", new screens/flows, or auth. |
 | **expo-test-runner** | Runs tests, fixes failures, adds new tests. Detailed code patterns for component, hook, and store tests with mocks. |
 | **expo-debugger** | Diagnoses and fixes runtime errors, Metro issues, NativeWind problems, Zustand bugs, Expo Router issues. |
@@ -98,7 +100,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 
 | Skill | Purpose |
 |-------|---------|
-| **expo-launch** | Discovery conversation in chat: ask what the user is building, follow up with questions (no fixed list), then generate and write `.cursor/skills/project-brief/PROJECT_BRIEF.md` with phases and importance. Trigger: "launch", "lets get started", "what are we building". |
+| **expo-launch** | Simpler discovery: scripted Q&A (one free-text question, then multiple-choice), then write PROJECT_BRIEF.md. Use when you prefer a fixed question flow without research. For research-informed, few-questions-at-a-time discovery, use the **expo-planning-facilitator** agent instead. |
 
 ### Domain skills (use directly or via feature-builder agent)
 
@@ -124,6 +126,8 @@ You get a working screen, persisted theme, and structure that matches the conven
 
 ## When to use which
 
+- **"Launch" / "Lets get started" / "What are we building?"** → **expo-planning-facilitator** agent (iterative Q&A + research), or **expo-launch** skill (simpler scripted Q&A)
+- **"Research [X] app features"** → **expo-researcher** agent
 - **"Where does X go?" / "What's the folder structure?"** → **expo-app-conventions**
 - **"Add a feature / screen / auth / build X"** → **expo-feature-builder** agent (it will use the skills)
 - **"Add or change UI / screens / components / styling"** → **expo-ui-agent**
@@ -142,9 +146,14 @@ You get a working screen, persisted theme, and structure that matches the conven
 
 ---
 
-## Discovery (expo-launch and project-brief)
+## Discovery (planning facilitator, researcher, and project-brief)
 
-To define what you're building before coding, say **"Launch"** or **"Lets get started"** in chat. The **expo-launch** skill runs a discovery conversation (the AI asks what you're building and follow-up questions), then writes a project brief to `.cursor/skills/project-brief/PROJECT_BRIEF.md` with phases and importance. The **project-brief** skill tells the AI to read that file when planning or implementing so work aligns with your priorities.
+To define what you're building before coding, say **"Launch"** or **"Lets get started"** in chat.
+
+- **Recommended:** The **expo-planning-facilitator** agent runs discovery: it asks **2–3 questions at a time**, calls the **expo-researcher** agent when research would improve the next questions (e.g. for a booking app it may research common features and suggest cancellation, reminders, etc.), then writes `.cursor/skills/project-brief/PROJECT_BRIEF.md`. Research happens only when useful; trivial or already-clear cases skip it.
+- **Alternative:** The **expo-launch** skill does a simpler, scripted Q&A (one open question, then a fixed set of multiple-choice questions) with no research. Use it if you prefer a short, predictable flow.
+
+The **project-brief** skill tells the AI to read PROJECT_BRIEF.md when planning or implementing so work aligns with your priorities.
 
 **Task tracking:** Tasks in the brief use Markdown checkboxes (`- [ ]` = todo, `- [x]` = done). When you ask **"what to do next"**, the AI lists only unchecked tasks, grouped by phase and importance, and suggests the next one. When the **expo-feature-builder** agent completes a feature that matches a brief task, it marks that task done in the file so the list stays accurate.
 
@@ -209,5 +218,5 @@ These fit the stack and common app needs. Add them under `.cursor/skills/` when 
 
 ## Summary
 
-- **4 agents**: expo-feature-builder, expo-test-runner, expo-debugger, expo-verifier.
+- **6 agents**: expo-planning-facilitator, expo-researcher, expo-feature-builder, expo-test-runner, expo-debugger, expo-verifier.
 - **13 skills**: expo-app-conventions, project-brief, expo-launch, expo-ui-agent, expo-state-agent, expo-api-agent, expo-env-agent, expo-auth-flow, expo-navigation, expo-forms-agent, expo-error-handling, expo-testing, expo-architecture-enforcer.
