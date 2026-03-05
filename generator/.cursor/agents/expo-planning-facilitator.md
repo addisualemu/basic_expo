@@ -109,8 +109,8 @@ Use this structure:
 ### 7. After writing
 
 - Confirm the brief was saved and where (`.cursor/skills/project-brief/PROJECT_BRIEF.md`).
-- **Jira (optional):** If Jira MCP tools are available, follow the **expo-jira-integration** skill: ask the user for the Jira project key if not known, then create Jira issues (Epic per phase, Story/Task per task) and link them. If the user declines or Jira MCP is not configured, skip this and only confirm the brief.
-- Tell the user they can: ask **"what's next?"** or **"what should I work on?"** for the next task (from Jira if MCP is configured, else from the brief), or say **"add [feature]"** and the expo-feature-builder will use the brief.
+- **Firebase (optional):** If Firebase MCP Firestore tools are available, follow the **expo-firebase-integration** skill: ask the user for the Firestore collection path if not known (or read `.cursor/firebase-tasks.txt`), then create task documents in Firestore. If the user declines or Firebase MCP is not configured, skip this and only confirm the brief.
+- Tell the user they can: ask **"what's next?"** or **"what should I work on?"** for the next task (from Firestore if MCP is configured, else from the brief), or say **"add [feature]"** and the expo-feature-builder will use the brief.
 
 ## Rules
 

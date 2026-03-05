@@ -90,5 +90,5 @@ Fill phases 2–3 (and optionally more) from what the user said; keep Phase 1 an
 ## After writing
 
 - Confirm to the user that the brief was saved and where (`.cursor/skills/project-brief/PROJECT_BRIEF.md`).
-- **Jira (optional):** If Jira MCP tools are available, follow the **expo-jira-integration** skill: ask the user for the Jira project key if not known, then create Jira issues (Epic per phase, Story/Task per task) and link them. If the user declines or Jira MCP is not configured, skip this and only confirm the brief.
-- Tell them they can ask to implement features next; you (and expo-feature-builder) will use the brief for phases and priorities. They can also ask **"what should I work on?"** (from Jira if MCP is configured, else from the brief).
+- **Firebase (optional):** If Firebase MCP Firestore tools are available, follow the **expo-firebase-integration** skill: ask the user for the Firestore collection path if not known (or read `.cursor/firebase-tasks.txt`), then create task documents in Firestore. If the user declines or Firebase MCP is not configured, skip this and only confirm the brief.
+- Tell them they can ask to implement features next; you (and expo-feature-builder) will use the brief for phases and priorities. They can also ask **"what should I work on?"** (from Firestore if MCP is configured, else from the brief).
