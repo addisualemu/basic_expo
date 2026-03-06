@@ -101,7 +101,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 | Skill | Purpose |
 |-------|---------|
 | **expo-launch** | Simpler discovery: scripted Q&A (one free-text question, then multiple-choice), then write PROJECT_BRIEF.md. Use when you prefer a fixed question flow without research. For research-informed, few-questions-at-a-time discovery, use the **expo-planning-facilitator** agent instead. |
-| **expo-firebase-integration** | Optional: when Firebase MCP is configured, create task documents in Firestore after writing the brief and answer "what to work on?" from Firestore. Use when Firebase MCP Firestore tools are available; otherwise fall back to PROJECT_BRIEF.md only. See [FIREBASE_INTEGRATION.md](../FIREBASE_INTEGRATION.md) for setup. |
+| **expo-atlassian-integration** | Optional: when the Atlassian MCP is configured, create Jira issues after writing the brief and answer "what to work on?" from Jira. Use when Atlassian MCP Jira tools are available; otherwise fall back to PROJECT_BRIEF.md only. See [ATLASSIAN_INTEGRATION.md](../ATLASSIAN_INTEGRATION.md) for setup. |
 
 ### Domain skills (use directly or via feature-builder agent)
 
@@ -141,7 +141,7 @@ You get a working screen, persisted theme, and structure that matches the conven
 - **"Add error handling / loading states / empty states"** → **expo-error-handling**
 - **"Add tests / coverage"** → **expo-testing** skill or **expo-test-runner** agent
 - **"Refactor to conventions / fix layout / migrate structure"** → **expo-architecture-enforcer**
-- **"What to do next?" / "What's left?" / "Priorities?"** → **project-brief** (or from Firestore if **expo-firebase-integration** and Firebase MCP are configured)
+- **"What to do next?" / "What's left?" / "Priorities?"** → **project-brief** (or from Jira if **expo-atlassian-integration** and Atlassian MCP are configured)
 - **"Debug this error" / "App is crashing"** → **expo-debugger** agent
 - **"Check if this follows conventions"** → **expo-verifier** agent
 
@@ -158,7 +158,7 @@ The **project-brief** skill tells the AI to read PROJECT_BRIEF.md when planning 
 
 **Task tracking:** Tasks in the brief use Markdown checkboxes (`- [ ]` = todo, `- [x]` = done). When you ask **"what to do next"**, the AI lists only unchecked tasks, grouped by phase and importance, and suggests the next one. When the **expo-feature-builder** agent completes a feature that matches a brief task, it marks that task done in the file so the list stays accurate.
 
-**Optional Firebase:** If you configure the Firebase MCP server (see [FIREBASE_INTEGRATION.md](../FIREBASE_INTEGRATION.md) in `.cursor/`), the AI can create task documents in Firestore when the brief is written and suggest the next task from Firestore when you ask "what should I work on?". The **expo-firebase-integration** skill describes when and how to use Firebase MCP Firestore tools.
+**Optional Atlassian (Jira):** To have the Atlassian MCP tool available, install the official Atlassian MCP server in Cursor and authenticate. See [ATLASSIAN_INTEGRATION.md](../ATLASSIAN_INTEGRATION.md) for setup and how the AI uses Jira. The **expo-atlassian-integration** skill describes when and how to use Atlassian MCP Jira tools.
 
 ---
 
@@ -222,4 +222,4 @@ These fit the stack and common app needs. Add them under `.cursor/skills/` when 
 ## Summary
 
 - **6 agents**: expo-planning-facilitator, expo-researcher, expo-feature-builder, expo-test-runner, expo-debugger, expo-verifier.
-- **14 skills**: expo-app-conventions, project-brief, expo-launch, expo-firebase-integration, expo-ui-agent, expo-state-agent, expo-api-agent, expo-env-agent, expo-auth-flow, expo-navigation, expo-forms-agent, expo-error-handling, expo-testing, expo-architecture-enforcer.
+- **14 skills**: expo-app-conventions, project-brief, expo-launch, expo-atlassian-integration, expo-ui-agent, expo-state-agent, expo-api-agent, expo-env-agent, expo-auth-flow, expo-navigation, expo-forms-agent, expo-error-handling, expo-testing, expo-architecture-enforcer.

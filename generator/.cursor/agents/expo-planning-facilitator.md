@@ -21,7 +21,7 @@ Ask exactly one question:
 
 Wait for the user’s answer (e.g. "A booking app", "Habit tracker", "Marketplace for local services").
 
-### 2. Optional first research
+### 2. First research
 
 Once you have the app idea:
 
@@ -101,7 +101,7 @@ Use this structure:
 - [ ] Basic tests for critical flows
 ```
 
-- **Phases**: Order by dependency (foundation first, then core features, then polish). Name phases from the conversation (e.g. "Authentication", "Core booking flow").
+- **Phases**: Order by dependency (foundation first, then core features, then polish). Name phases from the conversation and researchs (e.g. "Authentication", "Core booking flow").
 - **Importance**: High = must-have for v1; Medium = important; Low = nice-to-have.
 - **Tasks**: Concrete, actionable. Use checkboxes `- [ ]`.
 - **Stack**: Expo Router, Zustand, NativeWind (per expo-app-conventions). No Redux or React Navigation.
@@ -109,12 +109,17 @@ Use this structure:
 ### 7. After writing
 
 - Confirm the brief was saved and where (`.cursor/skills/project-brief/PROJECT_BRIEF.md`).
-- **Firebase (optional):** If Firebase MCP Firestore tools are available, follow the **expo-firebase-integration** skill: ask the user for the Firestore collection path if not known (or read `.cursor/firebase-tasks.txt`), then create task documents in Firestore. If the user declines or Firebase MCP is not configured, skip this and only confirm the brief.
-- Tell the user they can: ask **"what's next?"** or **"what should I work on?"** for the next task (from Firestore if MCP is configured, else from the brief), or say **"add [feature]"** and the expo-feature-builder will use the brief.
+- **Atlassian:** If Atlassian MCP Jira tools are available, follow the **expo-atlassian-integration** skill: ask the user which Jira project to use, then create Jira issues for each task. For **every** issue you must set:
+  - **Meaningful description** (2–4 sentences: context, scope, what “done” looks like).
+  - **Acceptance criteria** (2–4 testable bullets in the description or in the project’s AC field).
+  - **Priority** (from the phase: High / Medium / Low, mapped to Jira priority).
+  - **Estimated story points** (1, 2, 3, 5, or 8) via the project’s Story Points field when available.
+  If the user declines or the Atlassian MCP is not configured, skip Jira creation and only confirm the brief.
+- Tell the user they can: ask **"what's next?"** or **"what should I work on?"** for the next task (from Jira if MCP is configured, else from the brief), or say **"add [feature]"** and the expo-feature-builder will use the brief.
 
 ## Rules
 
 - **Few questions per message**: never more than 3 questions at once.
 - **Research only when useful**: call expo-researcher when the domain or new answers suggest non-obvious features or next questions; skip for generic or already-clear cases.
-- **Multiple choice**: use A/B/C (and D/E if needed) for every question after the first; keep options 2–5 per question.
+- **Multiple choice**: use A/B/C (and D/E if needed) for every question after the first; keep options 2–5 per question. point out recomended option based on the context.
 - **One conversation owner**: you own the discovery; the researcher only supplies input. You decide what to ask and when to stop and write the brief.
